@@ -39,6 +39,11 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	protected $personRepository;
 
 	/**
+	 * @var Tx_BlogExample_Domain_Service_TagCloudService
+	 */
+	protected $tagCloudService;
+
+	/**
 	 * Dependency injection of the Post Repository
 	 *
 	 * @param Tx_BlogExample_Domain_Repository_PostRepository $postRepository
@@ -59,6 +64,14 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	}
 
 	/**
+	 * @param Tx_BlogExample_Domain_Service_TagCloudService $tagCloudService
+ 	 * @return void
+-	 */
+	public function injectTagCloudService(Tx_BlogExample_Domain_Service_TagCloudService $tagCloudService) {
+		$this->tagCloudService = $tagCloudService;
+	}
+
+	/**
 	 * Displays a list of posts. If $tag is set only posts matching this tag are shown
 	 *
 	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog to show the posts of
@@ -73,6 +86,8 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 			$posts = $this->postRepository->findByTagAndBlog($tag, $blog);
 			$this->view->assign('tag', $tag);
 		}
+		$tags = $this->tagCloudService->createTagCloud($blog);
+		$this->view->assign('tags', $tags);
 		$this->view->assign('blog', $blog);
 		$this->view->assign('posts', $posts);
 	}
