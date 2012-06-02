@@ -27,6 +27,43 @@
 .tx-blogexample strong {
 	font-weight: bold;
 }
+/* Tag cloud */
+.tx-blogexample-tagcloud {
+	float: right;
+	text-align: center;
+	list-style: none;
+	border: 1px solid #96acbb;
+	background: #c0e6ff;
+	padding: 10px;
+	width: 40%;
+}
+.tx-blogexample-tagcloud li {
+	padding: 0;
+	background: none !important;
+	display: inline;
+	list-style: none;
+}
+.tx-blogexample-tagcloud a {
+	margin-right: 3px;
+	text-decoration: none;
+	background: none;
+	white-space: nowrap;
+}
+.tx-blogexample-tagcloud .popularity-1 a {
+	font-size: 1em;
+}
+.tx-blogexample-tagcloud .popularity-2 a {
+	font-size: 1.2em;
+}
+.tx-blogexample-tagcloud .popularity-3 a {
+	font-size: 1.4em;
+}
+.tx-blogexample-tagcloud .popularity-4 a {
+	font-size: 1.6em;
+}
+.tx-blogexample-tagcloud .popularity-5 a {
+	font-size: 1.8em;
+}
 
 /* Classes */
 

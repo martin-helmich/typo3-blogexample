@@ -2,6 +2,7 @@
 
 <f:section name="content">
 	<h1><f:translate key="post.header" arguments="{blogTitle: blog.title}">[Post header]</f:translate></h1>
+	<f:render partial="TagCloud" arguments="{blog: blog, tags: tags}" />
 	<f:if condition="{blog.administrator}">
 		<f:then>
 			<p><f:translate key="post.introductionAdministrator" arguments="{administratorEmail: '{f:uri.email(email: blog.administrator.email)}', administratorName: blog.administrator.name}" htmlEscape="false">[introduction (administrator)]</f:translate></p>
