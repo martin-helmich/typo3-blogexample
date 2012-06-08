@@ -40,7 +40,7 @@ class Tx_BlogExample_Domain_Service_TagCloudService implements t3lib_Singleton {
 		$tags = $this->getGroupedTags($blog);
 		foreach($tags as &$tag) {
 			$relativeAmount = (integer)$tag['amount'] - $minNumberOfTags;
-			$tag['popularity'] = round($relativeAmount / $maxRelativeAmount) * ($numberOfTagSizes - 1) + 1;
+			$tag['popularity'] = round(($relativeAmount / $maxRelativeAmount) * ($numberOfTagSizes - 1)) + 1;
 		}
 		return $tags;
 	}
@@ -58,7 +58,8 @@ class Tx_BlogExample_Domain_Service_TagCloudService implements t3lib_Singleton {
 		);
 		$minMaxTagCount = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'MAX(amount) max, MIN(amount) min',
-			'(' . $subSelect . ') subquery'
+			'(' . $subSelect . ') subquery',
+			'1'
 		);
 		return current($minMaxTagCount);
 	}
@@ -73,7 +74,7 @@ class Tx_BlogExample_Domain_Service_TagCloudService implements t3lib_Singleton {
 			'tx_blogexample_post_tag_mm pt INNER JOIN tx_blogexample_domain_model_tag t ON (pt.uid_foreign = t.uid) INNER JOIN tx_blogexample_domain_model_post p ON (pt.uid_local = p.uid)',
 			'p.blog = ' . (integer)$blog->getUid(),
 			't.name',
-			'amount DESC'
+			't.name'
 		);
 		return $tagGroups;
 	}
