@@ -2,7 +2,7 @@
 	<ul class="tx-blogexample-tagcloud">
 		<f:for each="{tags}" as="tag">
 			<li class="popularity-{tag.popularity}" title="{tag.amount}">
-				<f:link.action action="index" controller="Post" arguments="{blog : post.blog, tag : '{tag.name}'}">{tag.name}</f:link.action>
+				<f:link.action action="index" controller="Post" arguments="{blog : blog, tag : tag.name}">{tag.name}</f:link.action>
 			</li>
 		</f:for>
 	</ul>
