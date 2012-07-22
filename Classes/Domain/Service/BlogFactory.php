@@ -30,18 +30,10 @@ class Tx_BlogExample_Domain_Service_BlogFactory implements t3lib_Singleton {
 
 	/**
 	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 * @inject
 	 */
 	protected $objectManager;
 
-	/**
-	 * Injects the object manager
-	 *
-	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
-	 * @return void
-	 */
-	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
-		$this->objectManager = $objectManager;
-	}
 
 	/**
 	 * Returns a sample blog populated with generic data

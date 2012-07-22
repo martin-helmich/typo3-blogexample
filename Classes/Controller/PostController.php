@@ -29,47 +29,22 @@
 class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller_AbstractController {
 
 	/**
-	 * @var Tx_BlogExample_Domain_Model_PostRepository
+	 * @var Tx_BlogExample_Domain_Repository_PostRepository
+	 * @inject
 	 */
 	protected $postRepository;
 
 	/**
 	 * @var Tx_BlogExample_Domain_Repository_PersonRepository
+	 * @inject
 	 */
 	protected $personRepository;
 
 	/**
 	 * @var Tx_BlogExample_Domain_Service_TagCloudService
+	 * @inject
 	 */
 	protected $tagCloudService;
-
-	/**
-	 * Dependency injection of the Post Repository
-	 *
-	 * @param Tx_BlogExample_Domain_Repository_PostRepository $postRepository
-	 * @return void
-	 */
-	public function injectPostRepository(Tx_BlogExample_Domain_Repository_PostRepository $postRepository) {
-		$this->postRepository = $postRepository;
-	}
-
-	/**
-	 * Dependency injection of the Post Repository
-	 *
-	 * @param Tx_BlogExample_Domain_Repository_PersonRepository $personRepository
-	 * @return void
-	 */
-	public function injectPersonRepository(Tx_BlogExample_Domain_Repository_PersonRepository $personRepository) {
-		$this->personRepository = $personRepository;
-	}
-
-	/**
-	 * @param Tx_BlogExample_Domain_Service_TagCloudService $tagCloudService
- 	 * @return void
--	 */
-	public function injectTagCloudService(Tx_BlogExample_Domain_Service_TagCloudService $tagCloudService) {
-		$this->tagCloudService = $tagCloudService;
-	}
 
 	/**
 	 * Displays a list of posts. If $tag is set only posts matching this tag are shown

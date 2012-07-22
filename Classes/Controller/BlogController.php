@@ -30,33 +30,15 @@ class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller
 
 	/**
 	 * @var Tx_BlogExample_Domain_Repository_BlogRepository
+	 * @inject
 	 */
 	protected $blogRepository;
 
 	/**
 	 * @var Tx_BlogExample_Domain_Repository_AdministratorRepository
+	 * @inject
 	 */
 	protected $administratorRepository;
-
- 	/**
-+	 * Dependency injection of the Blog Repository
- 	 *
-	 * @param Tx_BlogExample_Domain_Repository_BlogRepository $blogRepository
- 	 * @return void
--	 */
-	public function injectBlogRepository(Tx_BlogExample_Domain_Repository_BlogRepository $blogRepository) {
-		$this->blogRepository = $blogRepository;
-	}
-
- 	/**
-+	 * Dependency injection of the Administrator Repository
- 	 *
-	 * @param Tx_BlogExample_Domain_Repository_AdministratorRepository $administratorRepository
- 	 * @return void
--	 */
-	public function injectAdministratorRepository(Tx_BlogExample_Domain_Repository_AdministratorRepository $administratorRepository) {
-		$this->administratorRepository = $administratorRepository;
-	}
 
 	/**
 	 * Index action for this controller. Displays a list of blogs.
