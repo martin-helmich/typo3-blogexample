@@ -265,9 +265,7 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	public function removeAllComments() {
 		$comments = clone $this->comments;
-		foreach($comments as $comment) {
-			$this->comments->detach($comment);
-		}
+		$this->comments->removeAll($comments);
 	}
 
 	/**
@@ -306,9 +304,7 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	public function removeAllRelatedPosts() {
 		$relatedPosts = clone $this->relatedPosts;
-		foreach($relatedPosts as $relatedPost) {
-			$this->relatedPosts->detach($relatedPost);
-		}
+		$this->relatedPosts->removeAll($relatedPosts);
 	}
 
 	/**
