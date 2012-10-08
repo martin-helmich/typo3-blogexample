@@ -1,7 +1,7 @@
 <f:layout name="Default" />
 
 <f:section name="iconButtons">
-	<f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="new_el" title="Create new Blog" />
+	<f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="actions-document-new" title="Create new Blog" />
 </f:section>
 
 <f:section name="content">
@@ -15,7 +15,7 @@
 							<f:link.action action="index" controller="Post" arguments="{blog: blog}" title="Edit this Blog">
 								{blog.title} (<f:count subject="{blog.posts}" />)
 							</f:link.action>
-							<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{blog: blog})}" icon="edit2" title="Edit this blog" />
+							<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{blog: blog})}" icon="actions-document-open" title="Edit this blog" />
 						</h3>
 						<p><f:format.nl2br>{blog.description}</f:format.nl2br></p>
 					</li>
