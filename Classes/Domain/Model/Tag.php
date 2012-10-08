@@ -32,7 +32,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * @var string
 	 */
-	protected $name;
+	protected $name = '';
 
 	/**
 	 * Constructs this tag

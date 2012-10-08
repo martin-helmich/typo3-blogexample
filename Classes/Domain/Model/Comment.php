@@ -38,19 +38,19 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var string
 	 * @validate NotEmpty
 	 */
-	protected $author;
+	protected $author = '';
 
 	/**
 	 * @var string
 	 * @validate EmailAddress
 	 */
-	protected $email;
+	protected $email = '';
 
 	/**
 	 * @var string
 	 * @validate StringLength(maximum = 500)
 	 */
-	protected $content;
+	protected $content = '';
 
 	/**
 	 * Constructs this post

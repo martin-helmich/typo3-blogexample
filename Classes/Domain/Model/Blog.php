@@ -50,7 +50,7 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 * @var string
 	 */
-	protected $logo;
+	protected $logo = '';
 
 	/**
 	 * The posts of this blog
@@ -59,7 +59,7 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @lazy
 	 * @cascade remove
 	 */
-	protected $posts;
+	protected $posts = NULL;
 
 	/**
 	 * The blog's administrator
@@ -67,7 +67,7 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \ExtbaseTeam\BlogExample\Domain\Model\Administrator
 	 * @lazy
 	 */
-	protected $administrator;
+	protected $administrator = NULL;
 
 	/**
 	 * Constructs a new Blog

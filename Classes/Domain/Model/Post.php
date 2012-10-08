@@ -32,47 +32,47 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @var \ExtbaseTeam\BlogExample\Domain\Model\Blog
 	 */
-	protected $blog;
+	protected $blog = NULL;
 
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 3, maximum = 50)
 	 */
-	protected $title;
+	protected $title = '';
 
 	/**
 	 * @var \DateTime
 	 */
-	protected $date;
+	protected $date = NULL;
 
 	/**
 	 * @var \ExtbaseTeam\BlogExample\Domain\Model\Person
 	 */
-	protected $author;
+	protected $author = NULL;
 
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 3)
 	 */
-	protected $content;
+	protected $content = '';
 
 	/**
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Tag>
 	 */
-	protected $tags;
+	protected $tags = NULL;
 
 	/**
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Comment>
 	 * @lazy
 	 * @cascade remove
 	 */
-	protected $comments;
+	protected $comments = NULL;
 
 	/**
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Post>
 	 * @lazy
 	 */
-	protected $relatedPosts;
+	protected $relatedPosts = NULL;
 
 	/**
 	 * Constructs this post

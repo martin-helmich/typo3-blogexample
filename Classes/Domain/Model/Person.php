@@ -32,17 +32,17 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @var string
 	 */
-	protected $firstname;
+	protected $firstname = '';
 
 	/**
 	 * @var string
 	 */
-	protected $lastname;
+	protected $lastname = '';
 
 	/**
 	 * @var string
 	 */
-	protected $email;
+	protected $email = '';
 
 	/**
 	 * Constructs a new Person
