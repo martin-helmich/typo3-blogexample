@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,16 +27,16 @@
 /**
  * The blog controller for the BlogExample extension
  */
-class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller_AbstractController {
+class BlogController extends AbstractController {
 
 	/**
-	 * @var Tx_BlogExample_Domain_Repository_BlogRepository
+	 * @var \ExtbaseTeam\BlogExample\Domain\Repository\BlogRepository
 	 * @inject
 	 */
 	protected $blogRepository;
 
 	/**
-	 * @var Tx_BlogExample_Domain_Repository_AdministratorRepository
+	 * @var \ExtbaseTeam\BlogExample\Domain\Repository\AdministratorRepository
 	 * @inject
 	 */
 	protected $administratorRepository;
@@ -52,11 +53,11 @@ class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller
 	/**
 	 * Displays a form for creating a new blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $newBlog A fresh blog object taken as a basis for the rendering
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $newBlog A fresh blog object taken as a basis for the rendering
 	 * @return void
 	 * @dontvalidate $newBlog
 	 */
-	public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
+	public function newAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $newBlog = NULL) {
 		$this->view->assign('newBlog', $newBlog);
 		$this->view->assign('administrators', $this->administratorRepository->findAll());
 	}
@@ -64,10 +65,10 @@ class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller
 	/**
 	 * Creates a new blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $newBlog A fresh Blog object which has not yet been added to the repository
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $newBlog A fresh Blog object which has not yet been added to the repository
 	 * @return void
 	 */
-	public function createAction(Tx_BlogExample_Domain_Model_Blog $newBlog) {
+	public function createAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $newBlog) {
 		// TODO access protection
 		$this->blogRepository->add($newBlog);
 		$this->addFlashMessage('created');
@@ -77,11 +78,11 @@ class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller
 	/**
 	 * Displays a form for editing an existing blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog to be edited. This might also be a clone of the original blog already containing modifications if the edit form has been submitted, contained errors and therefore ended up in this action again.
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog to be edited. This might also be a clone of the original blog already containing modifications if the edit form has been submitted, contained errors and therefore ended up in this action again.
 	 * @return void
 	 * @dontvalidate $blog
 	 */
-	public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+	public function editAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		$this->view->assign('blog', $blog);
 		$this->view->assign('administrators', $this->administratorRepository->findAll());
 	}
@@ -89,10 +90,10 @@ class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller
 	/**
 	 * Updates an existing blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog A not yet persisted clone of the original blog containing the modifications
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog A not yet persisted clone of the original blog containing the modifications
 	 * @return void
 	 */
-	public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+	public function updateAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		// TODO access protection
 		$this->blogRepository->update($blog);
 		$this->addFlashMessage('updated');
@@ -102,13 +103,13 @@ class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller
 	/**
 	 * Deletes an existing blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog to delete
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog to delete
 	 * @return void
 	 */
-	public function deleteAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+	public function deleteAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		// TODO access protection
 		$this->blogRepository->remove($blog);
-		$this->addFlashMessage('deleted', t3lib_FlashMessage::INFO);
+		$this->addFlashMessage('deleted', \TYPO3\CMS\Core\Messaging\FlashMessage::INFO);
 		$this->redirect('index');
 	}
 
@@ -131,7 +132,7 @@ class Tx_BlogExample_Controller_BlogController extends Tx_BlogExample_Controller
 	public function populateAction() {
 		// TODO access protection
 		$numberOfExistingBlogs = $this->blogRepository->countAll();
-		$blogFactory = $this->objectManager->get('Tx_BlogExample_Domain_Service_BlogFactory');
+		$blogFactory = $this->objectManager->get('ExtbaseTeam\\BlogExample\\Domain\\Service\\BlogFactory');
 		for ($blogNumber = $numberOfExistingBlogs + 1; $blogNumber < ($numberOfExistingBlogs + 5); $blogNumber++) {
 			$blog = $blogFactory->createBlog($blogNumber);
 			$this->blogRepository->add($blog);

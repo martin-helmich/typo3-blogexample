@@ -1,4 +1,6 @@
 <?php
+
+namespace ExtbaseTeam\BlogExample\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,7 +28,7 @@
 /**
  * An Administrator of a Blog
  */
-class Tx_BlogExample_Domain_Model_Administrator extends Tx_Extbase_Domain_Model_FrontendUser {
+class Administrator extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 
 }
 ?>

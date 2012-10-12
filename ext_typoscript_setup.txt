@@ -3,15 +3,15 @@
 config.tx_extbase {
 	persistence{
 		classes {
-			Tx_Extbase_Domain_Model_FrontendUser {
+			Extbase\Domain\ModelFrontendUser {
 				subclasses {
-					Tx_BlogExample_Domain_Model_Administrator = Tx_BlogExample_Domain_Model_Administrator
+					ExtbaseTeam\BlogExample\Domain\Model\Administrator = ExtbaseTeam\BlogExample\Domain\Model\Administrator
 				}
 			}
-			Tx_BlogExample_Domain_Model_Administrator {
+			ExtbaseTeam\BlogExample\Domain\Model\Administrator {
 				mapping {
 					tableName = fe_users
-					recordType = Tx_BlogExample_Domain_Model_Administrator
+					recordType = ExtbaseTeam\BlogExample\Domain\Model\Administrator
 				}
 			}
 		}

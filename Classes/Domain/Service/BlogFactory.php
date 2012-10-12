@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Service;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,10 +27,10 @@
 /**
  * A simple blog factory to create sample data
  */
-class Tx_BlogExample_Domain_Service_BlogFactory implements t3lib_Singleton {
+class BlogFactory implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
 	 * @inject
 	 */
 	protected $objectManager;
@@ -40,19 +41,19 @@ class Tx_BlogExample_Domain_Service_BlogFactory implements t3lib_Singleton {
 	 * It is also an example how to handle objects and repositories in general
 	 *
 	 * @param integer $blogNumber
-	 * @return Tx_BlogExample_Domain_Model_Blog
+	 * @return \ExtbaseTeam\BlogExample\Domain\Model\Blog
 	 */
 	public function createBlog($blogNumber = 1) {
 			// initialize blog
-		$blog = $this->objectManager->create('Tx_BlogExample_Domain_Model_Blog');
+		$blog = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Blog');
 		$blog->setTitle('Blog #' . $blogNumber);
 		$blog->setDescription('A blog about TYPO3 extension development.');
 
 			// create author
-		$author = $this->objectManager->create('Tx_BlogExample_Domain_Model_Person', 'Stephen', 'Smith', 'foo.bar@example.com');
+		$author = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Person', 'Stephen', 'Smith', 'foo.bar@example.com');
 
 			// create administrator
-		$administrator = $this->objectManager->create('Tx_BlogExample_Domain_Model_Administrator');
+		$administrator = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Administrator');
 		$administrator->setName('John Doe');
 		$administrator->setEmail('john.doe@example.com');
 		$blog->setAdministrator($administrator);
@@ -61,21 +62,21 @@ class Tx_BlogExample_Domain_Service_BlogFactory implements t3lib_Singleton {
 		for ($postNumber = 1; $postNumber < 6; $postNumber++) {
 
 				// create post
-			$post = $this->objectManager->create('Tx_BlogExample_Domain_Model_Post');
+			$post = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Post');
 			$post->setTitle('The ' . $postNumber . '. post of blog #' . $blogNumber);
 			$post->setAuthor($author);
 			$post->setContent('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
 
 				// create comments
-			$comment = $this->objectManager->create('Tx_BlogExample_Domain_Model_Comment');
-			$comment->setDate(new DateTime());
+			$comment = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Comment');
+			$comment->setDate(new \DateTime());
 			$comment->setAuthor('Peter Pan');
 			$comment->setEmail('peter.pan@example.com');
 			$comment->setContent('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
 			$post->addComment($comment);
 
-			$comment = $this->objectManager->create('Tx_BlogExample_Domain_Model_Comment');
-			$comment->setDate(new DateTime('2009-03-19 23:44'));
+			$comment = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Comment');
+			$comment->setDate(new \DateTime('2009-03-19 23:44'));
 			$comment->setAuthor('John Smith');
 			$comment->setEmail('john@matrix.org');
 			$comment->setContent('Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
@@ -83,15 +84,15 @@ class Tx_BlogExample_Domain_Service_BlogFactory implements t3lib_Singleton {
 
 				// create some random tags
 			if (rand(0, 1) > 0) {
-				$tag = $this->objectManager->create('Tx_BlogExample_Domain_Model_Tag', 'MVC');
+				$tag = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Tag', 'MVC');
 				$post->addTag($tag);
 			}
 			if (rand(0, 1) > 0) {
-				$tag = $this->objectManager->create('Tx_BlogExample_Domain_Model_Tag', 'Domain Driven Design');
+				$tag = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Tag', 'Domain Driven Design');
 				$post->addTag($tag);
 			}
 			if (rand(0, 1) > 0) {
-				$tag = $this->objectManager->create('Tx_BlogExample_Domain_Model_Tag', 'TYPO3');
+				$tag = $this->objectManager->create('ExtbaseTeam\\BlogExample\\Domain\\Model\\Tag', 'TYPO3');
 				$post->addTag($tag);
 			}
 

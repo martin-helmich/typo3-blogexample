@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\ViewHelpers;
 /***************************************************************
  *  Copyright notice
  *
@@ -37,7 +38,7 @@
  * <img src="http://www.gravatar.com/avatar/4a28b782cade3dbcd6e306fa4757849d?d=someDefaultImage&s=40" />
  * </output>
  */
-class Tx_BlogExample_ViewHelpers_GravatarViewHelper extends Tx_Fluid_Core_ViewHelper_TagBasedViewHelper {
+class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\TagBasedViewHelper {
 
 	/**
 	 * @var string

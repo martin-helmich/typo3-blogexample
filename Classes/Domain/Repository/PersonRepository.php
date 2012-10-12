@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,7 +27,7 @@
 /**
  * A repository for persons
  */
-class Tx_BlogExample_Domain_Repository_PersonRepository extends Tx_Extbase_Persistence_Repository {
+class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }
 ?>

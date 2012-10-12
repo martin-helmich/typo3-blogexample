@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,7 +27,7 @@
 /**
  * A repository for administrators
  */
-class Tx_BlogExample_Domain_Repository_AdministratorRepository extends Tx_Extbase_Domain_Repository_FrontendUserRepository {
+class AdministratorRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository {
 
 }
 ?>

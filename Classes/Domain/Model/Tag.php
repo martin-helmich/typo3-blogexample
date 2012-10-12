@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,7 +27,7 @@
 /**
  * A blog post tag
  */
-class Tx_BlogExample_Domain_Model_Tag extends Tx_Extbase_DomainObject_AbstractValueObject {
+class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 
 	/**
 	 * @var string

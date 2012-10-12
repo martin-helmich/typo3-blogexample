@@ -10,8 +10,8 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
  */
 if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['registerSinglePlugin']) {
 	// fully fletged blog
-	Tx_Extbase_Utility_Extension::configurePlugin(
-		$_EXTKEY,																	// The extension name (in UpperCamelCase) or the extension key (in lower_underscore)
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'ExtbaseTeam.' . $_EXTKEY,																	// The extension name (in UpperCamelCase) or the extension key (in lower_underscore)
 		'Pi1',																		// A unique name of the plugin in UpperCamelCase
 		array (																		// An array holding the controller-action-combinations that are accessible
 			'Blog' => 'index,new,create,delete,deleteAll,edit,update,populate',		// The first controller and its first action will be the default
@@ -27,28 +27,29 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['registerSinglePlugin']) {
 } else {
 
 	// Blog plugins
-	Tx_Extbase_Utility_Extension::configurePlugin(
-		$_EXTKEY,
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'ExtbaseTeam.' . $_EXTKEY,
 		'BlogList',
 		array('Blog' => 'index')
 	);
 
 	// Post plugins
-	Tx_Extbase_Utility_Extension::configurePlugin(
-		$_EXTKEY,
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'ExtbaseTeam.' . $_EXTKEY,
 		'PostList',
 		array('Post' => 'index')
 	);
-	Tx_Extbase_Utility_Extension::configurePlugin(
-		$_EXTKEY,
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'ExtbaseTeam.' . $_EXTKEY,
 		'PostSingle',
 		array('Post' => 'show', 'Comment' => 'create'),
 		array('Comment' => 'create')
 	);
 
 	// admin plugins
-	Tx_Extbase_Utility_Extension::configurePlugin(
-		$_EXTKEY,
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'ExtbaseTeam.' . $_EXTKEY,
+
 		'BlogAdmin',
 		array(
 			'Blog' => 'new,create,delete,deleteAll,edit,update,populate',
@@ -65,7 +66,7 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['registerSinglePlugin']) {
 
 if (TYPO3_MODE === 'BE') {
 	// register setup command
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Tx_BlogExample_Command_SetupCommandController';
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'ExtbaseTeam\\BlogExample\\Command\\SetupCommandController';
 }
 
 ?>

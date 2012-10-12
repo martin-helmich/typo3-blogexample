@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,17 +27,17 @@
 /**
  * A repository for blog posts
  */
-class Tx_BlogExample_Domain_Repository_PostRepository extends Tx_Extbase_Persistence_Repository {
+class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	protected $defaultOrderings = array('date' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING);
+	protected $defaultOrderings = array('date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING);
 
 	/**
 	 * Finds all posts by the specified blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post must refer to
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post must refer to
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface The posts
 	 */
-	public function findAllByBlog(Tx_BlogExample_Domain_Model_Blog $blog) {
+	public function findAllByBlog(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		$query = $this->createQuery();
 		return $query
 			->matching(
@@ -49,10 +50,10 @@ class Tx_BlogExample_Domain_Repository_PostRepository extends Tx_Extbase_Persist
 	 * Finds posts by the specified tag and blog
 	 *
 	 * @param string $tag
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post must refer to
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post must refer to
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface The posts
 	 */
-	public function findByTagAndBlog($tag, Tx_BlogExample_Domain_Model_Blog $blog) {
+	public function findByTagAndBlog($tag, \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		$query = $this->createQuery();
 		return $query
 			->matching(
@@ -67,10 +68,10 @@ class Tx_BlogExample_Domain_Repository_PostRepository extends Tx_Extbase_Persist
 	/**
 	 * Finds all remaining posts of the blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post The reference post
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The reference post
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface The posts
 	 */
-	public function findRemaining(Tx_BlogExample_Domain_Model_Post $post) {
+	public function findRemaining(\ExtbaseTeam\BlogExample\Domain\Model\Post $post) {
 		$blog = $post->getBlog();
 		$query = $this->createQuery();
 		return $query
@@ -88,10 +89,10 @@ class Tx_BlogExample_Domain_Repository_PostRepository extends Tx_Extbase_Persist
 	/**
 	 * Finds the previous of the given post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post The reference post
-	 * @return Tx_BlogExample_Domain_Model_Post
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The reference post
+	 * @return \ExtbaseTeam\BlogExample\Domain\Model\Post
 	 */
-	public function findPrevious(Tx_BlogExample_Domain_Model_Post $post) {
+	public function findPrevious(\ExtbaseTeam\BlogExample\Domain\Model\Post $post) {
 		$query = $this->createQuery();
 		return $query
 			->matching(
@@ -104,10 +105,10 @@ class Tx_BlogExample_Domain_Repository_PostRepository extends Tx_Extbase_Persist
 	/**
 	 * Finds the post next to the given post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post The reference post
-	 * @return Tx_BlogExample_Domain_Model_Post
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The reference post
+	 * @return \ExtbaseTeam\BlogExample\Domain\Model\Post
 	 */
-	public function findNext(Tx_BlogExample_Domain_Model_Post $post) {
+	public function findNext(\ExtbaseTeam\BlogExample\Domain\Model\Post $post) {
 		$query = $this->createQuery();
 		return $query
 			->matching(
@@ -120,11 +121,11 @@ class Tx_BlogExample_Domain_Repository_PostRepository extends Tx_Extbase_Persist
 	/**
 	 * Finds most recent posts by the specified blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post must refer to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post must refer to
 	 * @param integer $limit The number of posts to return at max
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface The posts
 	 */
-	public function findRecentByBlog(Tx_BlogExample_Domain_Model_Blog $blog, $limit = 5) {
+	public function findRecentByBlog(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, $limit = 5) {
 		$query = $this->createQuery();
 		return $query
 			->matching(

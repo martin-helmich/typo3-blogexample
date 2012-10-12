@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,24 +25,24 @@
  ***************************************************************/
 
 /**
- * The post controller for the BlogExample extension
+ * The post controller for the ExtbaseTeam\BlogExample extension
  */
-class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller_AbstractController {
+class PostController extends AbstractController {
 
 	/**
-	 * @var Tx_BlogExample_Domain_Repository_PostRepository
+	 * @var \ExtbaseTeam\BlogExample\Domain\Repository\PostRepository
 	 * @inject
 	 */
 	protected $postRepository;
 
 	/**
-	 * @var Tx_BlogExample_Domain_Repository_PersonRepository
+	 * @var \ExtbaseTeam\BlogExample\Domain\Repository\PersonRepository
 	 * @inject
 	 */
 	protected $personRepository;
 
 	/**
-	 * @var Tx_BlogExample_Domain_Service_TagCloudService
+	 * @var \ExtbaseTeam\BlogExample\Domain\Service\TagCloudService
 	 * @inject
 	 */
 	protected $tagCloudService;
@@ -49,11 +50,11 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	/**
 	 * Displays a list of posts. If $tag is set only posts matching this tag are shown
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog to show the posts of
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog to show the posts of
 	 * @param string $tag The name of the tag to show the posts for
 	 * @return void
 	 */
-	public function indexAction(Tx_BlogExample_Domain_Model_Blog $blog, $tag = NULL) {
+	public function indexAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, $tag = NULL) {
 		if (empty($tag)) {
 			$posts = $this->postRepository->findByBlog($blog);
 		} else {
@@ -70,12 +71,12 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	/**
 	 * Displays one single post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post The post to display
-	 * @param Tx_BlogExample_Domain_Model_Comment $newComment A new comment
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The post to display
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Comment $newComment A new comment
 	 * @return void
 	 * @dontvalidate $newComment
 	 */
-	public function showAction(Tx_BlogExample_Domain_Model_Post $post, Tx_BlogExample_Domain_Model_Comment $newComment = NULL) {
+	public function showAction(\ExtbaseTeam\BlogExample\Domain\Model\Post $post, \ExtbaseTeam\BlogExample\Domain\Model\Comment $newComment = NULL) {
 		$this->view->assign('post', $post);
 		$this->view->assign('newComment', $newComment);
 	}
@@ -83,12 +84,12 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	/**
 	 * Displays a form for creating a new post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belogs to
-	 * @param Tx_BlogExample_Domain_Model_Post $newPost A fresh post object taken as a basis for the rendering
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post belogs to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $newPost A fresh post object taken as a basis for the rendering
 	 * @return void
 	 * @dontvalidate $newPost
 	 */
-	public function newAction(Tx_BlogExample_Domain_Model_Blog $blog, Tx_BlogExample_Domain_Model_Post $newPost = NULL) {
+	public function newAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, \ExtbaseTeam\BlogExample\Domain\Model\Post $newPost = NULL) {
 		$this->view->assign('authors', $this->personRepository->findAll());
 		$this->view->assign('blog', $blog);
 		$this->view->assign('newPost', $newPost);
@@ -98,11 +99,11 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	/**
 	 * Creates a new post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belogns to
-	 * @param Tx_BlogExample_Domain_Model_Post $newBlog A fresh Blog object which has not yet been added to the repository
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post belogns to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $newBlog A fresh Blog object which has not yet been added to the repository
 	 * @return void
 	 */
-	public function createAction(Tx_BlogExample_Domain_Model_Blog $blog, Tx_BlogExample_Domain_Model_Post $newPost) {
+	public function createAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, \ExtbaseTeam\BlogExample\Domain\Model\Post $newPost) {
 		// TODO access protection
 		$blog->addPost($newPost);
 		$newPost->setBlog($blog);
@@ -113,12 +114,12 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	/**
 	 * Displays a form to edit an existing post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belogs to
-	 * @param Tx_BlogExample_Domain_Model_Post $post The original post
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post belogs to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The original post
 	 * @return void
 	 * @dontvalidate $post
 	 */
-	public function editAction(Tx_BlogExample_Domain_Model_Blog $blog, Tx_BlogExample_Domain_Model_Post $post) {
+	public function editAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, \ExtbaseTeam\BlogExample\Domain\Model\Post $post) {
 		$this->view->assign('authors', $this->personRepository->findAll());
 		$this->view->assign('blog', $blog);
 		$this->view->assign('post', $post);
@@ -128,11 +129,11 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	/**
 	 * Updates an existing post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belongs to
-	 * @param Tx_BlogExample_Domain_Model_Post $post A clone of the original post with the updated values already applied
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post A clone of the original post with the updated values already applied
 	 * @return void
 	 */
-	public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog, Tx_BlogExample_Domain_Model_Post $post) {
+	public function updateAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, \ExtbaseTeam\BlogExample\Domain\Model\Post $post) {
 		// TODO access protection
 		$this->postRepository->update($post);
 		$this->addFlashMessage('updated');
@@ -142,14 +143,14 @@ class Tx_BlogExample_Controller_PostController extends Tx_BlogExample_Controller
 	/**
 	 * Deletes an existing post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belongs to
-	 * @param Tx_BlogExample_Domain_Model_Post $post The post to be deleted
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The post to be deleted
 	 * @return void
 	 */
-	public function deleteAction(Tx_BlogExample_Domain_Model_Blog $blog, Tx_BlogExample_Domain_Model_Post $post) {
+	public function deleteAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, \ExtbaseTeam\BlogExample\Domain\Model\Post $post) {
 		// TODO access protection
 		$this->postRepository->remove($post);
-		$this->addFlashMessage('deleted', t3lib_FlashMessage::INFO);
+		$this->addFlashMessage('deleted', \TYPO3\CMS\Core\Messaging\FlashMessage::INFO);
 		$this->redirect('index', NULL, NULL, array('blog' => $blog));
 	}
 

@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,7 +27,7 @@
 /**
  * A blog
  */
-class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractEntity {
+class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * The blog's title.
@@ -54,7 +55,7 @@ class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * The posts of this blog
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Post>
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Post>
 	 * @lazy
 	 * @cascade remove
 	 */
@@ -63,7 +64,7 @@ class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * The blog's administrator
 	 *
-	 * @var Tx_BlogExample_Domain_Model_Administrator
+	 * @var \ExtbaseTeam\BlogExample\Domain\Model\Administrator
 	 * @lazy
 	 */
 	protected $administrator;
@@ -73,7 +74,7 @@ class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractE
 	 *
 	 */
 	public function __construct() {
-		$this->posts = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->posts = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 	}
 
 	/**
@@ -132,20 +133,20 @@ class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Adds a post to this blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post
+	 * @param Post $post
 	 * @return void
 	 */
-	public function addPost(Tx_BlogExample_Domain_Model_Post $post) {
+	public function addPost(Post $post) {
 		$this->posts->attach($post);
 	}
 
 	/**
 	 * Remove a post from this blog
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $postToRemove The post to be removed
+	 * @param Post $postToRemove The post to be removed
 	 * @return void
 	 */
-	public function removePost(Tx_BlogExample_Domain_Model_Post $postToRemove) {
+	public function removePost(Post $postToRemove) {
 		$this->posts->detach($postToRemove);
 	}
 
@@ -155,13 +156,13 @@ class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractE
 	 * @return void
 	 */
 	public function removeAllPosts() {
-		$this->posts = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->posts = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 	}
 
 	/**
 	 * Returns all posts in this blog
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage
 	 */
 	public function getPosts() {
 		return $this->posts;
@@ -170,17 +171,17 @@ class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Sets the administrator value
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Administrator $administrator The Administrator of this Blog
+	 * @param Administrator $administrator The Administrator of this Blog
 	 * @return void
 	 */
-	public function setAdministrator(Tx_BlogExample_Domain_Model_Administrator $administrator) {
+	public function setAdministrator(Administrator $administrator) {
 		$this->administrator = $administrator;
 	}
 
 	/**
 	 * Returns the administrator value
 	 *
-	 * @return Tx_BlogExample_Domain_Model_Administrator
+	 * @return Administrator
 	 */
 	public function getAdministrator() {
 		return $this->administrator;

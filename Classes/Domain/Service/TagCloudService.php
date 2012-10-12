@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Service;
 /***************************************************************
  *  Copyright notice
  *
@@ -25,10 +26,10 @@
 /**
  * A simple blog factory to create sample data
  */
-class Tx_BlogExample_Domain_Service_TagCloudService implements t3lib_Singleton {
+class TagCloudService implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog
 	 * @param integer $numberOfTagSizes
 	 * @return array
 	 */
@@ -46,10 +47,10 @@ class Tx_BlogExample_Domain_Service_TagCloudService implements t3lib_Singleton {
 	}
 
 	/**
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog
 	 * @return array in the format array('min' => <min number of tags>, 'max' => <max number of tags>)
 	 */
-	protected function getMinAndMaxNumberOfTags(Tx_BlogExample_Domain_Model_Blog $blog) {
+	protected function getMinAndMaxNumberOfTags(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		$subSelect = $GLOBALS['TYPO3_DB']->SELECTquery(
 			'COUNT(*) amount',
 			'tx_blogexample_post_tag_mm pt INNER JOIN tx_blogexample_domain_model_tag t ON (pt.uid_foreign = t.uid) INNER JOIN tx_blogexample_domain_model_post p ON (pt.uid_local = p.uid)',
@@ -65,10 +66,10 @@ class Tx_BlogExample_Domain_Service_TagCloudService implements t3lib_Singleton {
 	}
 
 	/**
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog
 	 * @return array in the format array(array('tag' => 'Foo', 'amount' => 123), array('tag' => 'Bar', 'amount' => 100), ...);
 	 */
-	protected function getGroupedTags(Tx_BlogExample_Domain_Model_Blog $blog) {
+	protected function getGroupedTags(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		$tagGroups = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			't.name name, COUNT(*) amount',
 			'tx_blogexample_post_tag_mm pt INNER JOIN tx_blogexample_domain_model_tag t ON (pt.uid_foreign = t.uid) INNER JOIN tx_blogexample_domain_model_post p ON (pt.uid_local = p.uid)',

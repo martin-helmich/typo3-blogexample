@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,11 +27,11 @@
 /**
  * A repository for blogs
  */
-class Tx_BlogExample_Domain_Repository_BlogRepository extends Tx_Extbase_Persistence_Repository {
+class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	protected $defaultOrderings = array(
-		'crdate' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING,
-		'uid' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING
+		'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
+		'uid' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
 	);
 
 	/**
@@ -40,7 +41,7 @@ class Tx_BlogExample_Domain_Repository_BlogRepository extends Tx_Extbase_Persist
 	 */
 	public function initializeObject() {
 		/*
-		$querySettings = $this->objectManager->create('Tx_Extbase_Persistence_Typo3QuerySettings');
+		$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings');
 		$querySettings->setRespectStoragePage(FALSE);
 		$this->setDefaultQuerySettings($querySettings);
 		 */

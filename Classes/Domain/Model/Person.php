@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,7 +27,7 @@
 /**
  * A person - acting as author
  */
-class Tx_BlogExample_Domain_Model_Person extends Tx_Extbase_DomainObject_AbstractEntity {
+class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var string

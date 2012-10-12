@@ -1,17 +1,18 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Command;
 
-class Tx_BlogExample_Command_SetupCommandController extends Tx_Extbase_MVC_Controller_CommandController {
+class SetupCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandController {
 
 	/**
-	 * @var Tx_BlogExample_Domain_Repository_BlogRepository
+	 * @var \ExtbaseTeam\BlogExample\Domain\Repository\BlogRepository
 	 */
 	protected $blogRepository;
 
 	/**
-	 * @param Tx_BlogExample_Domain_Repository_BlogRepository $blogRepository
+	 * @param \ExtbaseTeam\BlogExample\Domain\Repository\BlogRepository $blogRepository
 	 * @return void
 -	 */
-	public function injectBlogRepository(Tx_BlogExample_Domain_Repository_BlogRepository $blogRepository) {
+	public function injectBlogRepository(\ExtbaseTeam\BlogExample\Domain\Repository\BlogRepository $blogRepository) {
 		$this->blogRepository = $blogRepository;
 	}
 
@@ -23,7 +24,7 @@ class Tx_BlogExample_Command_SetupCommandController extends Tx_Extbase_MVC_Contr
 	 */
 	public function createDataCommand($numberOfBlogs = 5) {
 		$numberOfExistingBlogs = $this->blogRepository->countAll();
-		$blogFactory = $this->objectManager->get('Tx_BlogExample_Domain_Service_BlogFactory');
+		$blogFactory = $this->objectManager->get('ExtbaseTeam\\BlogExample\\Domain\\Service\\BlogFactory');
 		for ($blogNumber = $numberOfExistingBlogs + 1; $blogNumber < ($numberOfExistingBlogs + $numberOfBlogs); $blogNumber++) {
 			$blog = $blogFactory->createBlog($blogNumber);
 			$this->blogRepository->add($blog);

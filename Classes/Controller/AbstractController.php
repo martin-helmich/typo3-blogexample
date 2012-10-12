@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,9 +25,9 @@
  ***************************************************************/
 
 /**
- * Abstract base controller for the BlogExample extension
+ * Abstract base controller for the ExtbaseTeam\BlogExample extension
  */
-abstract class Tx_BlogExample_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
+abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * Override getErrorFlashMessage to present
@@ -47,7 +48,7 @@ abstract class Tx_BlogExample_Controller_AbstractController extends Tx_Extbase_M
 	 * @param integer $severity optional severity code. One of the t3lib_FlashMessage constants
 	 * @return void
 	 */
-	protected function addFlashMessage($action, $severity = t3lib_FlashMessage::OK) {
+	protected function addFlashMessage($action, $severity = \TYPO3\CMS\Core\Messaging\FlashMessage::OK) {
 		$messageLocallangKey = sprintf('flashmessage.%s.%s', $this->request->getControllerName(), $action);
 		$localizedMessage = $this->translate($messageLocallangKey, '[' . $messageLocallangKey . ']');
 		$titleLocallangKey = sprintf('%s.title', $messageLocallangKey);
@@ -56,14 +57,14 @@ abstract class Tx_BlogExample_Controller_AbstractController extends Tx_Extbase_M
 	}
 
 	/**
-	 * helper function to use localized strings in BlogExample controllers
+	 * helper function to use localized strings in ExtbaseTeam\BlogExample controllers
 	 *
 	 * @param string $key locallang key
 	 * @param string $default the default message to show if key was not found
 	 * @return string
 	 */
 	protected function translate($key, $defaultMessage = '') {
-		$message = Tx_Extbase_Utility_Localization::translate($key, 'BlogExample');
+		$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, 'BlogExample');
 		if ($message === NULL) {
 			$message = $defaultMessage;
 		}

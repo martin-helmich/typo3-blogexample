@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,10 +27,10 @@
 /**
  * A blog post comment
  */
-class Tx_BlogExample_Domain_Model_Comment extends Tx_Extbase_DomainObject_AbstractEntity {
+class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $date;
 
@@ -55,23 +56,23 @@ class Tx_BlogExample_Domain_Model_Comment extends Tx_Extbase_DomainObject_Abstra
 	 * Constructs this post
 	 */
 	public function __construct() {
-		$this->date = new DateTime();
+		$this->date = new \DateTime();
 	}
 
 	/**
 	 * Setter for date
 	 *
-	 * @param DateTime $date
+	 * @param \DateTime $date
 	 * @return void
 	 */
-	public function setDate(DateTime $date) {
+	public function setDate(\DateTime $date) {
 		$this->date = $date;
 	}
 
 	/**
 	 * Getter for date
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getDate() {
 		return $this->date;

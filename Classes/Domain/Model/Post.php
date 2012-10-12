@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,10 +27,10 @@
 /**
  * A blog post
  */
-class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractEntity {
+class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * @var Tx_BlogExample_Domain_Model_Blog
+	 * @var \ExtbaseTeam\BlogExample\Domain\Model\Blog
 	 */
 	protected $blog;
 
@@ -40,12 +41,12 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	protected $title;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $date;
 
 	/**
-	 * @var Tx_BlogExample_Domain_Model_Person
+	 * @var \ExtbaseTeam\BlogExample\Domain\Model\Person
 	 */
 	protected $author;
 
@@ -56,19 +57,19 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	protected $content;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Tag>
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Tag>
 	 */
 	protected $tags;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Comment>
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Comment>
 	 * @lazy
 	 * @cascade remove
 	 */
 	protected $comments;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Post>
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Post>
 	 * @lazy
 	 */
 	protected $relatedPosts;
@@ -77,26 +78,26 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	 * Constructs this post
 	 */
 	public function __construct() {
-		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->comments = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->relatedPosts = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->date = new DateTime();
+		$this->tags = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->comments = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->relatedPosts = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->date = new \DateTime();
 	}
 
 	/**
 	 * Sets the blog this post is part of
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog
 	 * @return void
 	 */
-	public function setBlog(Tx_BlogExample_Domain_Model_Blog $blog) {
+	public function setBlog(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
 		$this->blog = $blog;
 	}
 
 	/**
 	 * Returns the blog this post is part of
 	 *
-	 * @return Tx_BlogExample_Domain_Model_Blog The blog this post is part of
+	 * @return \ExtbaseTeam\BlogExample\Domain\Model\Blog The blog this post is part of
 	 */
 	public function getBlog() {
 		return $this->blog;
@@ -124,10 +125,10 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Setter for date
 	 *
-	 * @param DateTime $date
+	 * @param \DateTime $date
 	 * @return void
 	 */
-	public function setDate(DateTime $date) {
+	public function setDate(\DateTime $date) {
 		$this->date = $date;
 	}
 
@@ -135,7 +136,7 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	 * Getter for date
 	 *
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getDate() {
 		return $this->date;
@@ -144,30 +145,30 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Setter for tags
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $tags One or more Tx_BlogExample_Domain_Model_Tag objects
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $tags One or more Tag objects
 	 * @return void
 	 */
-	public function setTags(Tx_Extbase_Persistence_ObjectStorage $tags) {
+	public function setTags(\TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $tags) {
 		$this->tags = $tags;
 	}
 
 	/**
 	 * Adds a tag to this post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Tag $tag
+	 * @param Tag $tag
 	 * @return void
 	 */
-	public function addTag(Tx_BlogExample_Domain_Model_Tag $tag) {
+	public function addTag(Tag $tag) {
 		$this->tags->attach($tag);
 	}
 
 	/**
 	 * Removes a tag from this post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Tag $tag
+	 * @param Tag $tag
 	 * @return void
 	 */
-	public function removeTag(Tx_BlogExample_Domain_Model_Tag $tag) {
+	public function removeTag(Tag $tag) {
 		$this->tags->detach($tag);
 	}
 
@@ -177,14 +178,14 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	 * @return void
 	 */
 	public function removeAllTags() {
-		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->tags = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 	}
 
 	/**
 	 * Getter for tags
 	 * Note: We return a clone of the tags because they must not be modified as they are Value Objects
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage A storage holding Tx_BlogExample_Domain_Model_Tag objects
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage A storage holding objects
 	 */
 	public function getTags() {
 		return clone $this->tags;
@@ -193,17 +194,17 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Sets the author for this post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Person $author
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Person $author
 	 * @return void
 	 */
-	public function setAuthor(Tx_BlogExample_Domain_Model_Person $author) {
+	public function setAuthor(\ExtbaseTeam\BlogExample\Domain\Model\Person $author) {
 		$this->author = $author;
 	}
 
 	/**
 	 * Getter for author
 	 *
-	 * @return Tx_BlogExample_Domain_Model_Person
+	 * @return \ExtbaseTeam\BlogExample\Domain\Model\Person
 	 */
 	public function getAuthor() {
 		return $this->author;
@@ -231,30 +232,30 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Setter for the comments to this post
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $comments An Object Storage of related Comment instances
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $comments An Object Storage of related Comment instances
 	 * @return void
 	 */
-	public function setComments(Tx_Extbase_Persistence_ObjectStorage $comments) {
+	public function setComments(\TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $comments) {
 		$this->comments = $comments;
 	}
 
 	/**
 	 * Adds a comment to this post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Comment $comment
+	 * @param Comment $comment
 	 * @return void
 	 */
-	public function addComment(Tx_BlogExample_Domain_Model_Comment $comment) {
+	public function addComment(Comment $comment) {
 		$this->comments->attach($comment);
 	}
 
 	/**
 	 * Removes Comment from this post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Comment $commentToDelete
+	 * @param Comment $commentToDelete
 	 * @return void
 	 */
-	public function removeComment(Tx_BlogExample_Domain_Model_Comment $commentToDelete) {
+	public function removeComment(Comment $commentToDelete) {
 		$this->comments->detach($commentToDelete);
 	}
 
@@ -271,7 +272,7 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Returns the comments to this post
 	 *
-	 * @return An Tx_Extbase_Persistence_ObjectStorage holding instances of Tx_BlogExample_Domain_Model_Comment
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage holding instances of Comment
 	 */
 	public function getComments() {
 		return $this->comments;
@@ -280,20 +281,20 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Setter for the related posts
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $relatedPosts An Object Storage containing related Posts instances
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $relatedPosts An Object Storage containing related Posts instances
 	 * @return void
 	 */
-	public function setRelatedPosts(Tx_Extbase_Persistence_ObjectStorage $relatedPosts) {
+	public function setRelatedPosts(\TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $relatedPosts) {
 		$this->relatedPosts = $relatedPosts;
 	}
 
 	/**
 	 * Adds a related post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $comment
+	 * @param Post $comment
 	 * @return void
 	 */
-	public function addRelatedPost(Tx_BlogExample_Domain_Model_Post $post) {
+	public function addRelatedPost(Post $post) {
 		$this->relatedPosts->attach($post);
 	}
 
@@ -310,7 +311,7 @@ class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Returns the related posts
 	 *
-	 * @return An Tx_Extbase_Persistence_ObjectStorage holding instances of Tx_BlogExample_Domain_Model_Post
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage holding instances of Post
 	 */
 	public function getRelatedPosts() {
 		return $this->relatedPosts;

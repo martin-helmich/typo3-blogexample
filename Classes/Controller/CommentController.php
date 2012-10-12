@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,16 +27,16 @@
 /**
  * The comment controller for the BlogExample extension
  */
-class Tx_BlogExample_Controller_CommentController extends Tx_BlogExample_Controller_AbstractController {
+class CommentController extends AbstractController {
 
 	/**
 	 * Adds a comment to a blog post and redirects to single view
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post The post the comment is related to
-	 * @param Tx_BlogExample_Domain_Model_Comment $newComment The comment to create
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The post the comment is related to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Comment $newComment The comment to create
 	 * @return void
 	 */
-	public function createAction(Tx_BlogExample_Domain_Model_Post $post, Tx_BlogExample_Domain_Model_Comment $newComment) {
+	public function createAction(\ExtbaseTeam\BlogExample\Domain\Model\Post $post, \ExtbaseTeam\BlogExample\Domain\Model\Comment $newComment) {
 		$post->addComment($newComment);
 		$this->addFlashMessage('created');
 		$this->redirect('show', 'Post', NULL, array('post' => $post));
@@ -44,27 +45,27 @@ class Tx_BlogExample_Controller_CommentController extends Tx_BlogExample_Control
 	/**
 	 * Deletes an existing comment
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post The post the comment is related to
-	 * @param Tx_BlogExample_Domain_Model_Comment $comment The comment to be deleted
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The post the comment is related to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Comment $comment The comment to be deleted
 	 * @return void
 	 */
-	public function deleteAction(Tx_BlogExample_Domain_Model_Post $post, Tx_BlogExample_Domain_Model_Comment $comment) {
+	public function deleteAction(\ExtbaseTeam\BlogExample\Domain\Model\Post $post, \ExtbaseTeam\BlogExample\Domain\Model\Comment $comment) {
 		// TODO access protection
 		$post->removeComment($comment);
-		$this->addFlashMessage('deleted', t3lib_FlashMessage::INFO);
+		$this->addFlashMessage('deleted', \TYPO3\CMS\Core\Messaging\FlashMessage::INFO);
 		$this->redirect('show', 'Post', NULL, array('post' => $post));
 	}
 
 	/**
 	 * Deletes all comments of the given post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Post $post The post the comment is related to
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $post The post the comment is related to
 	 * @return void
 	 */
-	public function deleteAllAction(Tx_BlogExample_Domain_Model_Post $post) {
+	public function deleteAllAction(\ExtbaseTeam\BlogExample\Domain\Model\Post $post) {
 		// TODO access protection
 		$post->removeAllComments();
-		$this->addFlashMessage('deletedAll', t3lib_FlashMessage::INFO);
+		$this->addFlashMessage('deletedAll', \TYPO3\CMS\Core\Messaging\FlashMessage::INFO);
 		$this->redirect('edit', 'Post', NULL, array('post' => $post, 'blog' => $post->getBlog()));
 	}
 }

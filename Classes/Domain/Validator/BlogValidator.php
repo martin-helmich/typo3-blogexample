@@ -1,4 +1,5 @@
 <?php
+namespace ExtbaseTeam\BlogExample\Domain\Validator;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,17 +27,17 @@
 /**
  * An exemplary Blog validator
  */
-class Tx_BlogExample_Domain_Validator_BlogValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+class BlogValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
 
 	/**
 	 * Checks whether the given blog is valid
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog
 	 * @return boolean TRUE if blog could be validated, otherwise FALSE
 	 */
 	public function isValid($blog) {
 		if (strtolower($blog->getTitle()) === 'extbase') {
-			$this->addError(Tx_Extbase_Utility_Localization::translate('error.Blog.invalidTitle', 'BlogExample'), 1297418974);
+			$this->addError(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('error.Blog.invalidTitle', 'BlogExample'), 1297418974);
 			return FALSE;
 		}
 		return TRUE;
