@@ -79,6 +79,7 @@
 			<label index="culture.date.formatLong">Y-m-d H:i\h</label>
 			<label index="culture.date.formatShort">Y-m-d</label>
 			<label index="error.errorsOccurred">Following errors occurred</label>
+			<label index="error.Blog.noAdministrators">No administrators has been found. Please set a frontend user to an administrator.</label>
 			<label index="error.Blog.updateAction">Could not update blog</label>
 			<label index="error.Blog.createAction">Could not create blog</label>
 			<label index="error.Blog.invalidTitle">&quot;Extbase&quot; can't be used as a blog title</label>
@@ -164,6 +165,7 @@
 			<label index="flashmessage.Comment.deletedAll">Alle Kommentare des Beitrages wurden gelöscht</label>
 			<label index="culture.date.formatLong">d.m.Y H:i\h</label>
 			<label index="culture.date.formatShort">d.m.Y</label>
+			<label index="error.Blog.noAdministrators">Es konnte kein Administrator gefunden werden. Bitte überprüfen Sie einmal Ihre Benutzer.</label>
 			<label index="error.errorsOccurred">Es sind Fehler aufgetreten</label>
 			<label index="error.Blog.updateAction">Das Blog konnte nicht aktualisiert werden</label>
 			<label index="error.Blog.createAction">Das Blog konnte nicht angelegt werden</label>

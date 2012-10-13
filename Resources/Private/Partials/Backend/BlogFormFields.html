@@ -1,0 +1,15 @@
+<label for="title">Title</label><br />
+<f:form.textfield property="title" /><br />
+
+<label for="description">Description</label><br />
+<f:form.textarea property="description" rows="8" cols="46" /><br />
+
+<label for="administrator">Administrator</label><br />
+<f:if condition="{blog.administrators}">
+	<f:then>
+		<f:form.select property="administrator" value="{blog.administrator}" options="{administrators}" optionLabelField="name" /><br />
+	</f:then>
+	<f:else>
+		<f:translate key="error.Blog.noAdministrators" />
+	</f:else>
+</f:if>
