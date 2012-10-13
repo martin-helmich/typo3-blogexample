@@ -32,7 +32,7 @@ class Tx_BlogExample_Domain_Service_TagCloudService implements t3lib_Singleton {
 	 * @param integer $numberOfTagSizes
 	 * @return array
 	 */
-	public function createTagCloud(Tx_BlogExample_Domain_Model_Blog $blog, $numberOfTagSizes = 5) {
+	public function createTagCloud(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, $numberOfTagSizes = 5) {
 		$minAndMaxNumberOfTags = $this->getMinAndMaxNumberOfTags($blog);
 		$minNumberOfTags = (integer)$minAndMaxNumberOfTags['min'];
 		$maxNumberOfTags = (integer)$minAndMaxNumberOfTags['max'];
