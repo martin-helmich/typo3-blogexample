@@ -291,7 +291,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Adds a related post
 	 *
-	 * @param Post $comment
+	 * @param Post $post
 	 * @return void
 	 */
 	public function addRelatedPost(Post $post) {

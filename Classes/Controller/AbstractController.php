@@ -60,7 +60,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 	 * helper function to use localized strings in ExtbaseTeam\BlogExample controllers
 	 *
 	 * @param string $key locallang key
-	 * @param string $default the default message to show if key was not found
+	 * @param string $defaultMessage the default message to show if key was not found
 	 * @return string
 	 */
 	protected function translate($key, $defaultMessage = '') {

@@ -34,8 +34,10 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	 */
 	protected $name;
 
-	/*
+	/**
 	 * Constructs this tag
+	 *
+	 * @param $name
 	 */
 	public function __construct($name) {
 		$this->name = $name;

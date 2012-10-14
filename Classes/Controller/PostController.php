@@ -100,7 +100,7 @@ class PostController extends AbstractController {
 	 * Creates a new post
 	 *
 	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Blog $blog The blog the post belogns to
-	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $newBlog A fresh Blog object which has not yet been added to the repository
+	 * @param \ExtbaseTeam\BlogExample\Domain\Model\Post $newPost A fresh Blog object which has not yet been added to the repository
 	 * @return void
 	 */
 	public function createAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog, \ExtbaseTeam\BlogExample\Domain\Model\Post $newPost) {
