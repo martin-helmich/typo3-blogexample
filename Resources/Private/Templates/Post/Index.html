@@ -15,11 +15,11 @@
 		<f:then>
 			<f:if condition="{tag}">
 				<f:then>
-					<h2><f:translate key="post.listTag" arguments="{numberOfBosts: '{posts -> f:count()}', tag: tag}" htmlEscape="false">[list of posts (tag)]</f:translate>:</h2>
+					<h2><f:translate key="post.listTag" arguments="{numberOfPosts: '{posts -> f:count()}', tag: tag}" htmlEscape="false">[list of posts (tag)]</f:translate>:</h2>
 					<f:link.action class="textIcon cancel" arguments="{blog: blog}" title="{f:translate(key: 'post.showAll')}"><f:translate key="post.showAll">[show all posts]</f:translate></f:link.action>
 				</f:then>
 				<f:else>
-					<h2><f:translate key="post.list" arguments="{numberOfBosts: '{posts -> f:count()}'}">[list of posts]</f:translate>:</h2>
+					<h2><f:translate key="post.list" arguments="{numberOfPosts: '{posts -> f:count()}'}">[list of posts]</f:translate>:</h2>
 				</f:else>
 			</f:if>
 			<f:widget.paginate objects="{posts}" as="paginatedPosts" configuration="{itemsPerPage: settings.postsPerPage}">
@@ -39,7 +39,7 @@
 								<f:format.crop maxCharacters="100">{post.content}</f:format.crop>
 								<f:link.action action="show" arguments="{post: post}"><f:translate key="post.readMore">[read more]</f:translate></f:link.action>
 							</p>
-							<f:render partial="PostTags" arguments="{post: post}"/>
+							<f:render partial="PostTags" arguments="{blog: blog, post: post}"/>
 							<f:render partial="PostMetaData" arguments="{post: post}"/>
 						</li>
 					</f:for>
