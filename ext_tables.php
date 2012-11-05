@@ -17,13 +17,13 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['registerSinglePlugin']) {
 	$pluginSignature = strtolower($extensionName) . '_pi1';
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'select_key';
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform,recursive';
-	\TYPO3\CMS\Core\Extension\ExtensionManager::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
 
 } else {
 
 	\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('tt_content');
 	// These dividers are a little trick to group these items in the plugin selector
-	$TCA['tt_content']['columns']['list_type']['config']['items'][] = array('Blog Example', '--div--', \TYPO3\CMS\Core\Extension\ExtensionManager::extRelPath($_EXTKEY) . 'ext_icon.gif');
+	$TCA['tt_content']['columns']['list_type']['config']['items'][] = array('Blog Example', '--div--', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'ext_icon.gif');
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 		$_EXTKEY,
 		'BlogList',
@@ -49,7 +49,7 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['registerSinglePlugin']) {
 	$pluginSignature = strtolower($extensionName) . '_postlist';
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'select_key';
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform,recursive';
-	\TYPO3\CMS\Core\Extension\ExtensionManager::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
 
 }
 
@@ -80,12 +80,12 @@ if (TYPO3_MODE === 'BE') {
 /**
  * Add labels for context sensitive help (CSH)
  */
-\TYPO3\CMS\Core\Extension\ExtensionManager::addLLrefForTCAdescr('_MOD_web_BlogExampleTxBlogexampleM1', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('_MOD_web_BlogExampleTxBlogexampleM1', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh.xml');
 
-\TYPO3\CMS\Core\Extension\ExtensionManager::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'BlogExample setup');
-\TYPO3\CMS\Core\Extension\ExtensionManager::addStaticFile($_EXTKEY, 'Configuration/TypoScript/DefaultStyles', 'BlogExample CSS Styles (optional)');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'BlogExample setup');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/DefaultStyles', 'BlogExample CSS Styles (optional)');
 
-\TYPO3\CMS\Core\Extension\ExtensionManager::allowTableOnStandardPages('tx_blogexample_domain_model_blog');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_blogexample_domain_model_blog');
 $TCA['tx_blogexample_domain_model_blog'] = array (
 	'ctrl' => array (
 		'title'    => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog',
@@ -102,12 +102,12 @@ $TCA['tx_blogexample_domain_model_blog'] = array (
 		'enablecolumns' => array(
 			'disabled' => 'hidden'
 			),
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Extension\ExtensionManager::extPath($_EXTKEY) . 'Configuration/TCA/Blog.php',
-		'iconfile' => \TYPO3\CMS\Core\Extension\ExtensionManager::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_blog.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Blog.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_blog.gif'
 	)
 );
 
-\TYPO3\CMS\Core\Extension\ExtensionManager::allowTableOnStandardPages('tx_blogexample_domain_model_post');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_blogexample_domain_model_post');
 $TCA['tx_blogexample_domain_model_post'] = array (
 	'ctrl' => array (
 		'title'    => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_post',
@@ -126,12 +126,12 @@ $TCA['tx_blogexample_domain_model_post'] = array (
 		'enablecolumns'  => array(
 			'disabled' => 'hidden'
 		),
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Extension\ExtensionManager::extPath($_EXTKEY) . 'Configuration/TCA/Post.php',
-		'iconfile'   => \TYPO3\CMS\Core\Extension\ExtensionManager::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_post.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Post.php',
+		'iconfile'   => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_post.gif'
 	)
 );
 
-\TYPO3\CMS\Core\Extension\ExtensionManager::allowTableOnStandardPages('tx_blogexample_domain_model_comment');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_blogexample_domain_model_comment');
 $TCA['tx_blogexample_domain_model_comment'] = array (
 	'ctrl' => array (
 		'title'    => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_comment',
@@ -144,12 +144,12 @@ $TCA['tx_blogexample_domain_model_comment'] = array (
 		'enablecolumns'  => array (
 			'disabled' => 'hidden'
 		),
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Extension\ExtensionManager::extPath($_EXTKEY) . 'Configuration/TCA/Comment.php',
-		'iconfile'   => \TYPO3\CMS\Core\Extension\ExtensionManager::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_comment.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Comment.php',
+		'iconfile'   => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_comment.gif'
 	)
 );
 
-\TYPO3\CMS\Core\Extension\ExtensionManager::allowTableOnStandardPages('tx_blogexample_domain_model_person');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_blogexample_domain_model_person');
 $TCA['tx_blogexample_domain_model_person'] = array (
 	'ctrl' => array (
 		'title'    => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_person',
@@ -166,12 +166,12 @@ $TCA['tx_blogexample_domain_model_person'] = array (
 		'enablecolumns' => array(
 			'disabled' => 'hidden'
 			),
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Extension\ExtensionManager::extPath($_EXTKEY) . 'Configuration/TCA/Person.php',
-		'iconfile' => \TYPO3\CMS\Core\Extension\ExtensionManager::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_person.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Person.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_person.gif'
 	)
 );
 
-\TYPO3\CMS\Core\Extension\ExtensionManager::allowTableOnStandardPages('tx_blogexample_domain_model_tag');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_blogexample_domain_model_tag');
 $TCA['tx_blogexample_domain_model_tag'] = array (
 	'ctrl' => array (
 		'title'    => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_tag',
@@ -182,8 +182,8 @@ $TCA['tx_blogexample_domain_model_tag'] = array (
 		'enablecolumns'  => array (
 			'disabled' => 'hidden'
 		),
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Extension\ExtensionManager::extPath($_EXTKEY) . 'Configuration/TCA/Tag.php',
-		'iconfile'   => \TYPO3\CMS\Core\Extension\ExtensionManager::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_tag.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Tag.php',
+		'iconfile'   => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_blogexample_domain_model_tag.gif'
 	)
 );
 
