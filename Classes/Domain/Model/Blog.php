@@ -55,7 +55,7 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * The posts of this blog
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Post>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Post>
 	 * @lazy
 	 * @cascade remove
 	 */
@@ -74,7 +74,7 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 */
 	public function __construct() {
-		$this->posts = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->posts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -156,13 +156,13 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return void
 	 */
 	public function removeAllPosts() {
-		$this->posts = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->posts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Returns all posts in this blog
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function getPosts() {
 		return $this->posts;

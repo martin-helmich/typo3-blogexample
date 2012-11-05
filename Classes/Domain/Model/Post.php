@@ -57,19 +57,19 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $content = '';
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Tag>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Tag>
 	 */
 	protected $tags = NULL;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Comment>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Comment>
 	 * @lazy
 	 * @cascade remove
 	 */
 	protected $comments = NULL;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Post>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ExtbaseTeam\BlogExample\Domain\Model\Post>
 	 * @lazy
 	 */
 	protected $relatedPosts = NULL;
@@ -78,9 +78,9 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Constructs this post
 	 */
 	public function __construct() {
-		$this->tags = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->comments = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->relatedPosts = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->comments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->relatedPosts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->date = new \DateTime();
 	}
 
@@ -145,10 +145,10 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Setter for tags
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $tags One or more Tag objects
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags One or more Tag objects
 	 * @return void
 	 */
-	public function setTags(\TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $tags) {
+	public function setTags(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags) {
 		$this->tags = $tags;
 	}
 
@@ -178,14 +178,14 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return void
 	 */
 	public function removeAllTags() {
-		$this->tags = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Getter for tags
 	 * Note: We return a clone of the tags because they must not be modified as they are Value Objects
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage A storage holding objects
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage A storage holding objects
 	 */
 	public function getTags() {
 		return clone $this->tags;
@@ -232,10 +232,10 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Setter for the comments to this post
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $comments An Object Storage of related Comment instances
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments An Object Storage of related Comment instances
 	 * @return void
 	 */
-	public function setComments(\TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $comments) {
+	public function setComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments) {
 		$this->comments = $comments;
 	}
 
@@ -272,7 +272,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the comments to this post
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage holding instances of Comment
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage holding instances of Comment
 	 */
 	public function getComments() {
 		return $this->comments;
@@ -281,10 +281,10 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Setter for the related posts
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $relatedPosts An Object Storage containing related Posts instances
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $relatedPosts An Object Storage containing related Posts instances
 	 * @return void
 	 */
-	public function setRelatedPosts(\TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage $relatedPosts) {
+	public function setRelatedPosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $relatedPosts) {
 		$this->relatedPosts = $relatedPosts;
 	}
 
@@ -311,7 +311,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the related posts
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage holding instances of Post
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage holding instances of Post
 	 */
 	public function getRelatedPosts() {
 		return $this->relatedPosts;
