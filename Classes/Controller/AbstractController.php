@@ -48,7 +48,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 	 * @param integer $severity optional severity code. One of the t3lib_FlashMessage constants
 	 * @return void
 	 */
-	protected function addFlashMessage($action, $severity = \TYPO3\CMS\Core\Messaging\FlashMessage::OK) {
+	public function addFlashMessage($action, $severity = \TYPO3\CMS\Core\Messaging\FlashMessage::OK) {
 		$messageLocallangKey = sprintf('flashmessage.%s.%s', $this->request->getControllerName(), $action);
 		$localizedMessage = $this->translate($messageLocallangKey, '[' . $messageLocallangKey . ']');
 		$titleLocallangKey = sprintf('%s.title', $messageLocallangKey);
